@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .line-clamp-1 { overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 1; }
+  .line-clamp-2 { overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+  /* Hide scrollbar for horizontal scroll */
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #050b18;
+  color: #ffffff;
+}
+
+.font-oswald {
+  font-family: 'Oswald', sans-serif;
+}
+
+/* Admin panel — override white body text for form inputs */
+.admin-panel { color: #111827; }
+.admin-panel input,
+.admin-panel select,
+.admin-panel textarea { color: #111827; background-color: #ffffff; }
+
+/* Blog article content */
+.blog-content { color: #d1d5db; line-height: 1.8; font-size: 1rem; }
+.blog-content h2 { font-family: 'Oswald', sans-serif; font-size: 1.4rem; font-weight: 700; color: #ffffff; text-transform: uppercase; letter-spacing: 0.02em; margin: 2rem 0 0.75rem; }
+.blog-content h3 { font-family: 'Oswald', sans-serif; font-size: 1.15rem; font-weight: 600; color: #f3f4f6; text-transform: uppercase; margin: 1.5rem 0 0.5rem; }
+.blog-content p { margin-bottom: 1.25rem; }
+.blog-content strong { color: #f9fafb; font-weight: 600; }
+.blog-content a { color: #ef4444; text-decoration: underline; }
+.blog-content a:hover { color: #f87171; }
+.blog-content ul, .blog-content ol { padding-left: 1.5rem; margin-bottom: 1.25rem; }
+.blog-content li { margin-bottom: 0.4rem; }
+.blog-content blockquote { border-left: 4px solid #dc2626; padding-left: 1rem; color: #9ca3af; font-style: italic; margin: 1.5rem 0; }
+.blog-content img { border-radius: 0.75rem; width: 100%; height: auto; margin: 1.5rem 0; }
+
+/* line-clamp-3 */
+.line-clamp-3 { overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; }
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #050b18;
+}
+::-webkit-scrollbar-thumb {
+  background: #dc2626;
+  border-radius: 3px;
+}
