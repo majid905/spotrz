@@ -10,7 +10,8 @@ export async function GET(req: Request) {
       : 'SELECT * FROM live_streams WHERE is_active=1 ORDER BY sort_order ASC, created_at DESC'
     const [rows] = await db.query(query) as any
     return NextResponse.json(rows)
-  } catch {
+  } catch(e) {
+    console.error('live-streams GET error:', e)
     return NextResponse.json({ error: 'Failed' }, { status: 500 })
   }
 }

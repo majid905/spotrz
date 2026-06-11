@@ -2,6 +2,7 @@ import { db } from '@/lib/db'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import VideoPlayer from '@/components/VideoPlayer'
+import AdBanner from '@/components/AdBanner'
 import type { Metadata } from 'next'
 
 interface Stream {
@@ -70,11 +71,24 @@ export default async function LiveWatchPage({ params }: { params: { id: string }
         </div>
       </div>
 
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 py-6 lg:grid lg:grid-cols-[1fr_340px] lg:gap-6">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 py-6 lg:grid lg:grid-cols-[160px_1fr_340px] lg:gap-4">
+
+        {/* Left ad column — desktop only */}
+        <div className="hidden lg:flex lg:flex-col lg:items-center lg:pt-0">
+          <div className="sticky top-4">
+            <AdBanner adKey="856c19033f9f0de2da39687481e87787" width={160} height={600} />
+          </div>
+        </div>
+
         {/* Main content */}
         <div className="space-y-5">
           {/* Video Player */}
           <VideoPlayer url={stream.video_url} title={stream.title} />
+
+          {/* Ad below video — mobile only */}
+          <div className="lg:hidden">
+            <AdBanner adKey="856c19033f9f0de2da39687481e87787" width={300} height={250} />
+          </div>
 
           {/* Match Info */}
           <div className="rounded-2xl p-5 sm:p-6" style={{ background: '#0d1526' }}>
@@ -135,8 +149,11 @@ export default async function LiveWatchPage({ params }: { params: { id: string }
         </div>
 
         {/* Right sidebar — desktop only */}
-        {others.length > 0 && (
-          <div className="hidden lg:block space-y-3">
+        <div className="hidden lg:block space-y-3">
+          {/* Ad at top of right sidebar */}
+          <AdBanner adKey="856c19033f9f0de2da39687481e87787" width={300} height={250} />
+
+          {others.length > 0 && <>
             <h3 className="font-oswald font-bold text-white text-lg uppercase mb-4">More Live Streams</h3>
             {others.map(o => (
               <Link key={o.id} href={`/live/${o.id}`}
@@ -162,8 +179,8 @@ export default async function LiveWatchPage({ params }: { params: { id: string }
                 </div>
               </Link>
             ))}
-          </div>
-        )}
+          </>}
+        </div>
       </div>
     </div>
   )

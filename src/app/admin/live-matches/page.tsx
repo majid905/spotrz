@@ -22,7 +22,7 @@ export default function LiveMatchesAdmin() {
   const [modal, setModal] = useState<{open:boolean;data:any}>({open:false,data:{...blank}})
   const [saving, setSaving] = useState(false)
 
-  const load = () => fetch('/api/live-streams?all=1').then(r=>r.json()).then(setStreams)
+  const load = () => fetch('/api/live-streams?all=1').then(r=>r.json()).then(d=>setStreams(Array.isArray(d)?d:[]))
   useEffect(()=>{load()},[])
 
   function setF(k:string,v:any){setModal(m=>({...m,data:{...m.data,[k]:v}}))}
