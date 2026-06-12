@@ -16,11 +16,12 @@ export default async function NextMatchSection() {
   const match = await getNextMatch()
   if (!match) return null
 
-  const dateStr = `${match.match_date}`.split('T')[0]
+  const d = new Date(match.match_date)
+  const dateStr = `${d.getUTCFullYear()}-${String(d.getUTCMonth()+1).padStart(2,'0')}-${String(d.getUTCDate()).padStart(2,'0')}`
   const timeStr = match.match_time ? `${match.match_time}`.substring(0, 5) : '00:00'
   const isoDateTime = `${dateStr}T${timeStr}:00`
 
-  const displayDate = new Date(dateStr).toLocaleDateString('en-US', {
+  const displayDate = new Date(`${dateStr}T12:00:00`).toLocaleDateString('en-US', {
     weekday: 'long', day: 'numeric', month: 'long', year: 'numeric',
   })
 

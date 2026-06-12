@@ -59,7 +59,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteJsonLd) }} />
       </head>
       <body>
-        {/* Adsterra Social Bar / In-page push */}
+        {/* Adsterra Social Bar + Popunder */}
         <Script src="https://pl17892879.effectivecpmnetwork.com/97/8c/2b/978c2bd329d738413c77d4f65d7090a1.js" strategy="afterInteractive" />
         <VisitorTracker />
         {children}

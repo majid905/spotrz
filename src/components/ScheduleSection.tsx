@@ -28,8 +28,10 @@ async function getSchedule(): Promise<Match[]> {
   } catch { return [] }
 }
 
-function fmtDate(d: string) {
-  return new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+function fmtDate(d: string | Date) {
+  const dt = new Date(d)
+  const iso = `${dt.getUTCFullYear()}-${String(dt.getUTCMonth()+1).padStart(2,'0')}-${String(dt.getUTCDate()).padStart(2,'0')}`
+  return new Date(`${iso}T12:00:00`).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
 }
 
 function fmtTime(t: string) {
