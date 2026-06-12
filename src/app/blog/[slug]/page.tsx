@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import AdBanner from '@/components/AdBanner'
 import { getSiteSettings } from '@/lib/settings'
 import { db } from '@/lib/db'
 import type { Metadata } from 'next'
@@ -53,7 +54,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
 
   const related = await getRelatedPosts(post.category, post.id)
 
-  const postUrl = `https://spotrz.online/blog/${post.slug || post.id}`
+  const postUrl = `https://espnsports.online/blog/${post.slug || post.id}`
 
   return (
     <div className="min-h-screen" style={{ background: '#050b18' }}>
@@ -83,6 +84,12 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
         </div>
       </div>
 
+      {/* Ad below hero image */}
+      <div className="max-w-4xl mx-auto px-4 py-4">
+        <div className="hidden md:block"><AdBanner adKey="856c19033f9f0de2da39687481e87787" width={728} height={90} /></div>
+        <div className="md:hidden"><AdBanner adKey="856c19033f9f0de2da39687481e87787" width={300} height={250} /></div>
+      </div>
+
       {/* Article */}
       <article className="max-w-4xl mx-auto px-4 py-8">
         {/* Meta */}
@@ -101,11 +108,23 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
           {post.excerpt}
         </p>
 
+        {/* In-content ad — high RPM spot */}
+        <div className="my-8 flex justify-center">
+          <div className="hidden md:block"><AdBanner adKey="856c19033f9f0de2da39687481e87787" width={728} height={90} /></div>
+          <div className="md:hidden"><AdBanner adKey="856c19033f9f0de2da39687481e87787" width={300} height={250} /></div>
+        </div>
+
         {/* Content */}
         <div
           className="blog-content prose-invert"
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
+
+        {/* Ad after article content */}
+        <div className="my-8">
+          <div className="hidden md:block"><AdBanner adKey="856c19033f9f0de2da39687481e87787" width={728} height={90} /></div>
+          <div className="md:hidden"><AdBanner adKey="856c19033f9f0de2da39687481e87787" width={300} height={250} /></div>
+        </div>
 
         {/* Share */}
         <div className="mt-10 pt-8 border-t border-white/10">
@@ -138,6 +157,12 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
           </div>
         </div>
       </article>
+
+      {/* Ad before related posts */}
+      <div className="max-w-4xl mx-auto px-4 pb-6">
+        <div className="hidden md:block"><AdBanner adKey="856c19033f9f0de2da39687481e87787" width={728} height={90} /></div>
+        <div className="md:hidden"><AdBanner adKey="856c19033f9f0de2da39687481e87787" width={300} height={250} /></div>
+      </div>
 
       {/* Related Posts */}
       {related.length > 0 && (

@@ -6,9 +6,15 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
+        disallow: ['/admin/', '/api/setup', '/api/seed-blog', '/api/migrate-highlights'],
+      },
+      {
+        userAgent: 'Googlebot',
+        allow: '/',
         disallow: ['/admin/', '/api/'],
       },
     ],
-    sitemap: 'https://spotrz.online/sitemap.xml',
+    sitemap: 'https://espnsports.online/sitemap.xml',
+    host: 'https://espnsports.online',
   }
 }

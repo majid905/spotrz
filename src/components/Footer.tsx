@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
@@ -152,7 +152,7 @@ export default function Footer({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
             <p className="text-gray-600 text-[10px] sm:text-xs uppercase tracking-widest text-center">
-              © {new Date().getFullYear()} {siteName} · spotrz.online · All rights reserved
+              © {new Date().getFullYear()} {siteName} · espnsports.online · All rights reserved
             </p>
             <div className="flex flex-wrap justify-center gap-x-4 gap-y-1">
               {legalLinks.map(link => (

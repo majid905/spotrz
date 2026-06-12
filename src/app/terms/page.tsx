@@ -1,12 +1,12 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Terms of Service – Spotrz.online',
-  description: 'Read the Spotrz.online Terms of Service. By using our sports scores and highlights platform, you agree to these terms.',
+  title: 'Terms of Service – espnsports.online',
+  description: 'Read the espnsports.online Terms of Service. By using our sports scores and highlights platform, you agree to these terms.',
   openGraph: {
-    title: 'Terms of Service – Spotrz.online',
-    url: 'https://spotrz.online/terms',
+    title: 'Terms of Service – espnsports.online',
+    url: 'https://espnsports.online/terms',
   },
 }
 
@@ -25,11 +25,11 @@ export default function TermsPage() {
       <section className="py-12 sm:py-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <TermsSection title="1. Acceptance of Terms">
-            <p>By accessing or using <strong>Spotrz.online</strong> ("Site," "Service"), you confirm that you are at least 13 years old and agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, please do not use our Service.</p>
+            <p>By accessing or using <strong>espnsports.online</strong> ("Site," "Service"), you confirm that you are at least 13 years old and agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, please do not use our Service.</p>
           </TermsSection>
 
           <TermsSection title="2. Description of Service">
-            <p>Spotrz.online provides:</p>
+            <p>espnsports.online provides:</p>
             <ul>
               <li>Live and historical sports scores (football/soccer, boxing, UFC, NFL)</li>
               <li>Match highlights and video content</li>
@@ -53,7 +53,7 @@ export default function TermsPage() {
           </TermsSection>
 
           <TermsSection title="4. Intellectual Property">
-            <p>All original content on Spotrz.online — including articles, editorial text, graphics, logos, and UI design — is the intellectual property of Spotrz.online or its content partners and is protected by copyright and trademark laws.</p>
+            <p>All original content on espnsports.online — including articles, editorial text, graphics, logos, and UI design — is the intellectual property of espnsports.online or its content partners and is protected by copyright and trademark laws.</p>
             <p>Sports scores and statistics are factual data and are not subject to copyright. However, the presentation, analysis, and formatting of this data is our proprietary work.</p>
             <p>You may share links to our content. Reproducing full articles or embedding our video highlights on third-party websites without permission is prohibited.</p>
           </TermsSection>
@@ -73,7 +73,7 @@ export default function TermsPage() {
           </TermsSection>
 
           <TermsSection title="7. Limitation of Liability">
-            <p>To the fullest extent permitted by law, Spotrz.online and its operators shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of (or inability to use) the Service, including but not limited to loss of data, revenue, or profits.</p>
+            <p>To the fullest extent permitted by law, espnsports.online and its operators shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of (or inability to use) the Service, including but not limited to loss of data, revenue, or profits.</p>
           </TermsSection>
 
           <TermsSection title="8. DMCA & Copyright">
@@ -85,7 +85,7 @@ export default function TermsPage() {
           </TermsSection>
 
           <TermsSection title="10. Cookies">
-            <p>By using Spotrz.online, you consent to our use of cookies as described in our <Link href="/cookies" className="text-red-600 hover:underline">Cookie Policy</Link>.</p>
+            <p>By using espnsports.online, you consent to our use of cookies as described in our <Link href="/cookies" className="text-red-600 hover:underline">Cookie Policy</Link>.</p>
           </TermsSection>
 
           <TermsSection title="11. Termination">

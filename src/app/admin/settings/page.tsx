@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 import { useEffect, useState } from 'react'
 import ImageUpload from '@/components/ImageUpload'
 
@@ -106,7 +106,7 @@ export default function SettingsPage() {
         <div className="grid grid-cols-2 gap-4">
           <div>
             <label className={labelCls}>Email</label>
-            <input type="email" value={form.contact_email} onChange={e => set('contact_email', e.target.value)} className={inputCls} placeholder="contact@spotrz.online" />
+            <input type="email" value={form.contact_email} onChange={e => set('contact_email', e.target.value)} className={inputCls} placeholder="contact@espnsports.online" />
           </div>
           <div>
             <label className={labelCls}>Phone</label>

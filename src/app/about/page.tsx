@@ -1,13 +1,13 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'About Spotrz – Your #1 Sports Scores & Highlights Hub',
-  description: 'Learn about Spotrz.online – the fastest live sports scores, match highlights, and news covering FIFA World Cup 2026, Boxing, UFC, and NFL.',
+  title: 'About ESPN Sports – Your #1 Sports Scores & Highlights Hub',
+  description: 'Learn about espnsports.online – the fastest live sports scores, match highlights, and news covering FIFA World Cup 2026, Boxing, UFC, and NFL.',
   openGraph: {
-    title: 'About Spotrz – Your #1 Sports Scores & Highlights Hub',
+    title: 'About ESPN Sports – Your #1 Sports Scores & Highlights Hub',
     description: 'Live scores, match highlights, and breaking sports news for fans worldwide.',
-    url: 'https://spotrz.online/about',
+    url: 'https://espnsports.online/about',
   },
 }
 
@@ -36,7 +36,7 @@ export default function AboutPage() {
             The Home of Live<br />Sports Coverage
           </h1>
           <p className="text-gray-300 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
-            Spotrz.online delivers real-time scores, match highlights, and breaking sports news — from FIFA World Cup 2026 to the UFC octagon, every second counts.
+            espnsports.online delivers real-time scores, match highlights, and breaking sports news — from FIFA World Cup 2026 to the UFC octagon, every second counts.
           </p>
         </div>
       </section>
@@ -65,7 +65,7 @@ export default function AboutPage() {
                 Sports News Without the Noise
               </h2>
               <p className="text-gray-600 text-sm leading-relaxed mb-4">
-                Founded by sports fans for sports fans, Spotrz.online was built to cut through the clutter. No ads that take 5 seconds to skip. No paywalls on match scores. Just fast, accurate sports data the moment it happens.
+                Founded by sports fans for sports fans, espnsports.online was built to cut through the clutter. No ads that take 5 seconds to skip. No paywalls on match scores. Just fast, accurate sports data the moment it happens.
               </p>
               <p className="text-gray-600 text-sm leading-relaxed">
                 We aggregate live scores from verified APIs, publish expert analysis from our editorial team, and host the best match highlights so you never miss a moment — whether you're following the FIFA World Cup 2026, a PPV boxing bout, or an NFL Sunday showdown.

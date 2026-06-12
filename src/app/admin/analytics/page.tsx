@@ -36,7 +36,7 @@ export default function AnalyticsPage() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch('/api/analytics/stats').then(r => r.json()).then(d => { setData(d); setLoading(false) })
+    fetch('/api/analytics/stats').then(r => r.ok ? r.json() : null).then(d => { setData(d); setLoading(false) })
   }, [])
 
   if (loading) return <div className="flex items-center justify-center h-64 text-gray-400">Loading analytics...</div>

@@ -1,12 +1,12 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import ContactForm from './ContactForm'
 
 export const metadata: Metadata = {
-  title: 'Contact Us – Spotrz.online',
-  description: 'Get in touch with the Spotrz.online team for general inquiries, advertising, press, DMCA notices, and more.',
+  title: 'Contact Us – espnsports.online',
+  description: 'Get in touch with the espnsports.online team for general inquiries, advertising, press, DMCA notices, and more.',
   openGraph: {
-    title: 'Contact Us – Spotrz.online',
-    url: 'https://spotrz.online/contact',
+    title: 'Contact Us – espnsports.online',
+    url: 'https://espnsports.online/contact',
   },
 }
 

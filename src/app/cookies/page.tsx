@@ -1,12 +1,12 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Cookie Policy – Spotrz.online',
-  description: 'Learn how Spotrz.online uses cookies and similar technologies, and how you can control them.',
+  title: 'Cookie Policy – espnsports.online',
+  description: 'Learn how espnsports.online uses cookies and similar technologies, and how you can control them.',
   openGraph: {
-    title: 'Cookie Policy – Spotrz.online',
-    url: 'https://spotrz.online/cookies',
+    title: 'Cookie Policy – espnsports.online',
+    url: 'https://espnsports.online/cookies',
   },
 }
 
@@ -64,7 +64,7 @@ export default function CookiesPage() {
 
           <h2 className="font-oswald font-bold text-gray-900 uppercase text-xl tracking-tight mb-4">What Are Cookies?</h2>
           <p className="text-gray-600 text-sm leading-relaxed mb-8">
-            Cookies are small text files placed on your device by websites you visit. They are widely used to make websites work efficiently, provide information to site owners, and enable certain features. Spotrz.online uses cookies and similar technologies (local storage, session storage, pixels) to deliver a fast and personalized sports experience.
+            Cookies are small text files placed on your device by websites you visit. They are widely used to make websites work efficiently, provide information to site owners, and enable certain features. espnsports.online uses cookies and similar technologies (local storage, session storage, pixels) to deliver a fast and personalized sports experience.
           </p>
 
           <h2 className="font-oswald font-bold text-gray-900 uppercase text-xl tracking-tight mb-6">Types of Cookies We Use</h2>

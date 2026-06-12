@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import VideoPlayer from '@/components/VideoPlayer'
+import AdBanner from '@/components/AdBanner'
 import { getSiteSettings } from '@/lib/settings'
 import { db } from '@/lib/db'
 import type { Metadata } from 'next'
@@ -34,7 +35,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const title = `${h.title} – Match Highlights | Spotrz`
   const description = h.description || `Watch ${h.title} video highlights. ${h.competition ? `${h.competition}.` : ''} Full match highlights on Spotrz.`
   const imageUrl = h.thumbnail || 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1200&q=80'
-  const pageUrl = `https://spotrz.online/highlights/${h.slug || h.id}`
+  const pageUrl = `https://espnsports.online/highlights/${h.slug || h.id}`
 
   return {
     title,
@@ -68,7 +69,7 @@ export default async function HighlightPage({ params }: { params: { slug: string
   await db.query('UPDATE highlights SET views = views + 1 WHERE id = ?', [h.id])
 
   const related = await getRelated(h.category, h.id)
-  const pageUrl = `https://spotrz.online/highlights/${h.slug || h.id}`
+  const pageUrl = `https://espnsports.online/highlights/${h.slug || h.id}`
   const imageUrl = h.thumbnail || 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1200&q=80'
 
   const jsonLd = {
@@ -84,7 +85,7 @@ export default async function HighlightPage({ params }: { params: { slug: string
     publisher: {
       '@type': 'Organization',
       name: 'Spotrz',
-      url: 'https://spotrz.online',
+      url: 'https://espnsports.online',
     },
     url: pageUrl,
     interactionStatistic: {
@@ -118,6 +119,12 @@ export default async function HighlightPage({ params }: { params: { slug: string
           <div className="grid lg:grid-cols-3 gap-6">
             {/* Main content */}
             <div className="lg:col-span-2">
+              {/* Ad above video */}
+              <div className="mb-4">
+                <div className="hidden md:block"><AdBanner adKey="856c19033f9f0de2da39687481e87787" width={728} height={90} /></div>
+                <div className="md:hidden"><AdBanner adKey="856c19033f9f0de2da39687481e87787" width={300} height={250} /></div>
+              </div>
+
               {/* Video Player */}
               <div className="rounded-2xl overflow-hidden mb-5">
                 {h.video_url ? (
@@ -171,6 +178,12 @@ export default async function HighlightPage({ params }: { params: { slug: string
                 )}
               </div>
 
+              {/* Ad below video player */}
+              <div className="mb-4">
+                <div className="hidden md:block"><AdBanner adKey="856c19033f9f0de2da39687481e87787" width={728} height={90} /></div>
+                <div className="md:hidden"><AdBanner adKey="856c19033f9f0de2da39687481e87787" width={300} height={250} /></div>
+              </div>
+
               {h.description && (
                 <p className="text-gray-400 text-sm leading-relaxed mb-5 border-l-4 border-red-600 pl-4">
                   {h.description}
@@ -222,6 +235,10 @@ export default async function HighlightPage({ params }: { params: { slug: string
 
             {/* Sidebar — more highlights */}
             <div className="lg:col-span-1">
+              {/* Sidebar sticky ad */}
+              <div className="mb-5 flex justify-center">
+                <AdBanner adKey="856c19033f9f0de2da39687481e87787" width={300} height={250} />
+              </div>
               <h2 className="font-oswald text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">
                 More Highlights
               </h2>

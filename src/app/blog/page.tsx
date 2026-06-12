@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import AdBanner from '@/components/AdBanner'
 import { getSiteSettings } from '@/lib/settings'
 import { db } from '@/lib/db'
 import type { Metadata } from 'next'
@@ -151,6 +152,12 @@ export default async function BlogPage({
           </div>
         )}
 
+        {/* Ad after featured post */}
+        <div className="mb-8">
+          <div className="hidden md:block"><AdBanner adKey="856c19033f9f0de2da39687481e87787" width={728} height={90} /></div>
+          <div className="md:hidden"><AdBanner adKey="856c19033f9f0de2da39687481e87787" width={300} height={250} /></div>
+        </div>
+
         {/* Stats bar */}
         <div className="flex items-center justify-between mb-6">
           <p className="text-gray-500 text-sm">
@@ -205,6 +212,12 @@ export default async function BlogPage({
             ))}
           </div>
         )}
+
+        {/* Ad before pagination */}
+        <div className="mb-8">
+          <div className="hidden md:block"><AdBanner adKey="856c19033f9f0de2da39687481e87787" width={728} height={90} /></div>
+          <div className="md:hidden"><AdBanner adKey="856c19033f9f0de2da39687481e87787" width={300} height={250} /></div>
+        </div>
 
         {/* Pagination */}
         {pages > 1 && (

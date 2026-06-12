@@ -24,7 +24,8 @@ export async function GET() {
       weekly,
       recent,
     })
-  } catch {
-    return NextResponse.json({ error: 'Failed' }, { status: 500 })
+  } catch (e) {
+    console.error('[analytics/stats]', e)
+    return NextResponse.json({ error: 'Failed', detail: String(e) }, { status: 500 })
   }
 }

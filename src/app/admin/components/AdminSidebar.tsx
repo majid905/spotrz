@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -101,7 +101,7 @@ export default function AdminSidebar() {
           </svg>
           <span>Logout</span>
         </button>
-        <p className="text-[10px] text-gray-300 text-center mt-3">© 2026 spotrz.online</p>
+        <p className="text-[10px] text-gray-300 text-center mt-3">© 2026 espnsports.online</p>
       </div>
     </aside>
   )

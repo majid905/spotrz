@@ -1,12 +1,12 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy – Spotrz.online',
-  description: 'Read the Spotrz.online Privacy Policy. Learn how we collect, use, and protect your personal data in compliance with GDPR and applicable laws.',
+  title: 'Privacy Policy – espnsports.online',
+  description: 'Read the espnsports.online Privacy Policy. Learn how we collect, use, and protect your personal data in compliance with GDPR and applicable laws.',
   openGraph: {
-    title: 'Privacy Policy – Spotrz.online',
-    url: 'https://spotrz.online/privacy',
+    title: 'Privacy Policy – espnsports.online',
+    url: 'https://espnsports.online/privacy',
   },
 }
 
@@ -25,7 +25,7 @@ export default function PrivacyPage() {
       <section className="py-12 sm:py-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 prose-custom">
           <PolicySection title="1. Introduction">
-            <p>Welcome to <strong>Spotrz.online</strong> ("we," "us," or "our"). We respect your privacy and are committed to protecting your personal data. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website at <a href="https://spotrz.online" className="text-red-600 hover:underline">https://spotrz.online</a>.</p>
+            <p>Welcome to <strong>espnsports.online</strong> ("we," "us," or "our"). We respect your privacy and are committed to protecting your personal data. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website at <a href="https://espnsports.online" className="text-red-600 hover:underline">https://espnsports.online</a>.</p>
             <p>Please read this policy carefully. If you disagree with its terms, please discontinue use of the site.</p>
           </PolicySection>
 
@@ -100,7 +100,7 @@ export default function PrivacyPage() {
           </PolicySection>
 
           <PolicySection title="9. Children's Privacy">
-            <p>Spotrz.online is not directed to children under 13. We do not knowingly collect personal information from children. If you believe we have inadvertently collected such data, please contact us and we will delete it promptly.</p>
+            <p>espnsports.online is not directed to children under 13. We do not knowingly collect personal information from children. If you believe we have inadvertently collected such data, please contact us and we will delete it promptly.</p>
           </PolicySection>
 
           <PolicySection title="10. Changes to This Policy">
@@ -111,7 +111,7 @@ export default function PrivacyPage() {
             <p>For any privacy-related questions or requests:</p>
             <ul>
               <li>Email: <a href="mailto:majid.bd905@gmail.com" className="text-red-600 hover:underline">majid.bd905@gmail.com</a></li>
-              <li>Website: <Link href="/contact" className="text-red-600 hover:underline">spotrz.online/contact</Link></li>
+              <li>Website: <Link href="/contact" className="text-red-600 hover:underline">espnsports.online/contact</Link></li>
             </ul>
           </PolicySection>
 
