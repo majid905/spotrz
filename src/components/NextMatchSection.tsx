@@ -1,48 +1,35 @@
-'use client'
-import { useState, useEffect } from 'react'
+import { db } from '@/lib/db'
+import NextMatchCountdown from './NextMatchCountdown'
 
-const NEXT_MATCH_DATE = new Date('2026-09-27T19:30:00')
-
-function getCountdown(target: Date) {
-  const diff = target.getTime() - Date.now()
-  if (diff <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 }
-  return {
-    days: Math.floor(diff / (1000 * 60 * 60 * 24)),
-    hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
-    minutes: Math.floor((diff / (1000 * 60)) % 60),
-    seconds: Math.floor((diff / 1000) % 60),
-  }
+async function getNextMatch() {
+  try {
+    const [rows] = await db.query(
+      `SELECT * FROM matches
+       WHERE status = 'scheduled' AND match_date >= CURDATE()
+       ORDER BY match_date ASC, match_time ASC LIMIT 1`
+    ) as any
+    return rows?.[0] || null
+  } catch { return null }
 }
 
-function CountUnit({ value, label }: { value: number; label: string }) {
-  return (
-    <div className="text-center">
-      <div
-        suppressHydrationWarning
-        className="font-oswald font-bold text-red-600 leading-none tabular-nums"
-        style={{ fontSize: 'clamp(2.2rem, 10vw, 5rem)' }}
-      >
-        {String(value).padStart(2, '0')}
-      </div>
-      <div className="text-gray-400 text-[10px] sm:text-xs uppercase tracking-widest mt-2 sm:mt-3">{label}</div>
-    </div>
-  )
-}
+export default async function NextMatchSection() {
+  const match = await getNextMatch()
+  if (!match) return null
 
-export default function NextMatchSection() {
-  const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
+  const dateStr = `${match.match_date}`.split('T')[0]
+  const timeStr = match.match_time ? `${match.match_time}`.substring(0, 5) : '00:00'
+  const isoDateTime = `${dateStr}T${timeStr}:00`
 
-  useEffect(() => {
-    setCountdown(getCountdown(NEXT_MATCH_DATE))
-    const id = setInterval(() => setCountdown(getCountdown(NEXT_MATCH_DATE)), 1000)
-    return () => clearInterval(id)
-  }, [])
+  const displayDate = new Date(dateStr).toLocaleDateString('en-US', {
+    weekday: 'long', day: 'numeric', month: 'long', year: 'numeric',
+  })
 
   return (
     <section
       className="relative py-16 sm:py-24 overflow-hidden"
       style={{ background: 'linear-gradient(135deg, #030918 0%, #0c1d3d 50%, #040d22 100%)' }}
     >
+      {/* Background text */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden" aria-hidden="true">
         <span className="font-oswald font-black uppercase text-white/[0.03] whitespace-nowrap"
           style={{ fontSize: 'clamp(4rem, 18vw, 14rem)', letterSpacing: '-0.04em' }}>
@@ -51,37 +38,40 @@ export default function NextMatchSection() {
       </div>
 
       <div className="relative z-10 max-w-3xl mx-auto px-5 sm:px-8 text-center">
-        <h2 className="font-oswald font-bold text-white uppercase mb-8 tracking-tight"
+        <h2 className="font-oswald font-bold text-white uppercase mb-6 tracking-tight"
           style={{ fontSize: 'clamp(2rem, 8vw, 4rem)' }}>
           Next Match
         </h2>
-        <div className="flex items-center justify-center gap-3 mb-6 sm:mb-8">
-          <span className="text-2xl sm:text-3xl">⚽</span>
-          <span className="text-white text-xs sm:text-sm font-bold uppercase tracking-[0.2em]">Liga Premier</span>
-          <span className="text-2xl sm:text-3xl">🏆</span>
+
+        {/* Competition badge */}
+        <div className="inline-block bg-red-600/20 border border-red-600/40 text-red-400 text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-8">
+          {match.competition_type}
         </div>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 md:gap-10 mb-4">
+
+        {/* Teams */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-8 mb-3">
           <span className="font-oswald font-bold text-white uppercase tracking-tight text-center"
-            style={{ fontSize: 'clamp(1.1rem, 5vw, 2rem)' }}>
-            Sportizai Titans
+            style={{ fontSize: 'clamp(1.2rem, 5vw, 2.2rem)' }}>
+            {match.home_team}
           </span>
-          <span className="font-oswald text-xl sm:text-2xl font-bold text-red-600 uppercase shrink-0 bg-red-600/10 border border-red-600/30 px-4 py-1 rounded">
+          <span className="font-oswald text-xl sm:text-3xl font-black text-red-600 uppercase shrink-0 bg-red-600/10 border border-red-600/30 px-5 py-1.5 rounded">
             VS
           </span>
           <span className="font-oswald font-bold text-white uppercase tracking-tight text-center"
-            style={{ fontSize: 'clamp(1.1rem, 5vw, 2rem)' }}>
-            Royal Lions FC
+            style={{ fontSize: 'clamp(1.2rem, 5vw, 2.2rem)' }}>
+            {match.away_team}
           </span>
         </div>
-        <p className="text-gray-400 text-xs uppercase tracking-[0.15em] mb-10 sm:mb-14">
-          Sunday, 27 September 2026
+
+        <p className="text-gray-400 text-xs uppercase tracking-[0.15em] mb-2">
+          {displayDate}
         </p>
-        <div className="grid grid-cols-4 gap-2 sm:gap-6 max-w-sm sm:max-w-lg mx-auto">
-          <CountUnit value={countdown.days} label="Days" />
-          <CountUnit value={countdown.hours} label="Hours" />
-          <CountUnit value={countdown.minutes} label="Minutes" />
-          <CountUnit value={countdown.seconds} label="Seconds" />
-        </div>
+        {match.venue && (
+          <p className="text-gray-600 text-xs mb-10 sm:mb-14">{match.venue}</p>
+        )}
+
+        {/* Countdown (client component) */}
+        <NextMatchCountdown targetISO={isoDateTime} />
       </div>
     </section>
   )
