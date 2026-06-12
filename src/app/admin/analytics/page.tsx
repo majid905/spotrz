@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react'
 
 interface AnalyticsData {
-  today: number; total: number; avgDuration: number
+  live: number; today: number; total: number; avgDuration: number
   countries: { country: string; country_code: string; cnt: number }[]
   devices: { device_type: string; cnt: number }[]
   browsers: { browser: string; cnt: number }[]
@@ -36,7 +36,11 @@ export default function AnalyticsPage() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch('/api/analytics/stats').then(r => r.ok ? r.json() : null).then(d => { setData(d); setLoading(false) })
+    const load = () => fetch('/api/analytics/stats').then(r => r.ok ? r.json() : null).then(d => { setData(d); setLoading(false) })
+    load()
+    // Refresh live count every 30s
+    const interval = setInterval(load, 30000)
+    return () => clearInterval(interval)
   }, [])
 
   if (loading) return <div className="flex items-center justify-center h-64 text-gray-400">Loading analytics...</div>
@@ -49,7 +53,18 @@ export default function AnalyticsPage() {
   return (
     <div className="space-y-6">
       {/* Top Stats */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-5 gap-4">
+        {/* Live Now — special card */}
+        <div className="bg-red-600 rounded-2xl shadow-sm p-5 sm:col-span-1">
+          <div className="flex items-center justify-between mb-2">
+            <span className="flex items-center gap-1.5">
+              <span className="w-2 h-2 bg-white rounded-full animate-pulse"/>
+              <span className="text-[10px] font-bold text-red-100 uppercase tracking-widest">Live Now</span>
+            </span>
+          </div>
+          <p className="text-3xl font-bold text-white">{data.live}</p>
+          <p className="text-red-200 text-[10px] mt-1">last 5 min</p>
+        </div>
         {[
           { label: 'Total Visitors', value: data.total, icon: '👥', color: 'text-blue-600' },
           { label: 'Today', value: data.today, icon: '📅', color: 'text-green-600' },

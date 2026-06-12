@@ -22,7 +22,23 @@ export default function VisitorTracker() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ session_id: key, page_url: pathname, referrer: document.referrer }),
+    }).then(() => {
+      // Send initial heartbeat
+      fetch('/api/analytics/heartbeat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ session_id: key }),
+      }).catch(() => {})
     }).catch(() => {})
+
+    // Heartbeat every 30s to track live visitors
+    const heartbeat = setInterval(() => {
+      fetch('/api/analytics/heartbeat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ session_id: key }),
+      }).catch(() => {})
+    }, 30000)
 
     const sendDuration = () => {
       const duration = Math.floor((Date.now() - startTime) / 1000)
@@ -35,7 +51,10 @@ export default function VisitorTracker() {
     }
 
     window.addEventListener('beforeunload', sendDuration)
-    return () => window.removeEventListener('beforeunload', sendDuration)
+    return () => {
+      window.removeEventListener('beforeunload', sendDuration)
+      clearInterval(heartbeat)
+    }
   }, [pathname])
 
   return null

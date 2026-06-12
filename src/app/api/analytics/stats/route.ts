@@ -5,6 +5,7 @@ export async function GET() {
   try {
     const [[todayRow]] = await db.query(`SELECT COUNT(*) as cnt FROM visitor_analytics WHERE DATE(created_at)=CURDATE()`) as any
     const [[totalRow]] = await db.query(`SELECT COUNT(*) as cnt FROM visitor_analytics`) as any
+    const [[liveRow]] = await db.query(`SELECT COUNT(DISTINCT session_id) as cnt FROM visitor_analytics WHERE last_seen >= NOW() - INTERVAL 5 MINUTE`) as any
     const [[avgRow]] = await db.query(`SELECT ROUND(AVG(duration_seconds)) as v FROM visitor_analytics WHERE duration_seconds>0`) as any
     const [countries] = await db.query(`SELECT country, country_code, COUNT(*) as cnt FROM visitor_analytics GROUP BY country, country_code ORDER BY cnt DESC LIMIT 12`) as any
     const [devices] = await db.query(`SELECT device_type, COUNT(*) as cnt FROM visitor_analytics GROUP BY device_type ORDER BY cnt DESC`) as any
@@ -14,6 +15,7 @@ export async function GET() {
     const [recent] = await db.query(`SELECT id,country,country_code,city,device_type,browser,os,page_url,referrer,duration_seconds,created_at FROM visitor_analytics ORDER BY created_at DESC LIMIT 30`) as any
 
     return NextResponse.json({
+      live: liveRow.cnt || 0,
       today: todayRow.cnt,
       total: totalRow.cnt,
       avgDuration: avgRow.v || 0,
