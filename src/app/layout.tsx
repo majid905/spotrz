@@ -59,8 +59,29 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteJsonLd) }} />
       </head>
       <body>
-        {/* Adsterra Social Bar + Popunder */}
-        <Script src="https://pl17892879.effectivecpmnetwork.com/97/8c/2b/978c2bd329d738413c77d4f65d7090a1.js" strategy="afterInteractive" />
+        {/* Adsterra Social Bar + Popunder — loaded on first user interaction for Chrome compatibility */}
+        <Script id="adsterra-main" strategy="afterInteractive" dangerouslySetInnerHTML={{ __html: `
+          (function() {
+            var loaded = false;
+            function load() {
+              if (loaded) return;
+              loaded = true;
+              var s = document.createElement('script');
+              s.src = 'https://pl17892879.effectivecpmnetwork.com/97/8c/2b/978c2bd329d738413c77d4f65d7090a1.js';
+              s.async = true;
+              document.head.appendChild(s);
+            }
+            // Load immediately for Firefox/Safari
+            load();
+            // Also re-trigger on first click for Chrome popup policy
+            document.addEventListener('click', function() {
+              var s2 = document.createElement('script');
+              s2.src = 'https://pl17892879.effectivecpmnetwork.com/97/8c/2b/978c2bd329d738413c77d4f65d7090a1.js';
+              s2.async = true;
+              document.head.appendChild(s2);
+            }, { once: true });
+          })();
+        `}} />
         <VisitorTracker />
         {children}
       </body>
