@@ -1,5 +1,17 @@
 ﻿import type { Metadata } from 'next'
 import Link from 'next/link'
+import AdBanner from '@/components/AdBanner'
+
+const AD_KEY = '856c19033f9f0de2da39687481e87787'
+
+function Ad() {
+  return (
+    <div className="py-4 text-center">
+      <div className="hidden md:inline-block"><AdBanner adKey={AD_KEY} width={728} height={90} /></div>
+      <div className="md:hidden inline-block"><AdBanner adKey={AD_KEY} width={300} height={250} /></div>
+    </div>
+  )
+}
 
 export const metadata: Metadata = {
   title: 'About ESPN Sports – Your #1 Sports Scores & Highlights Hub',
@@ -54,6 +66,9 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      {/* Ad after stats */}
+      <div className="bg-white"><Ad /></div>
 
       {/* Mission */}
       <section className="py-16 sm:py-20">
@@ -122,6 +137,9 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      {/* Ad before CTA */}
+      <div className="bg-gray-50"><Ad /></div>
 
       {/* CTA */}
       <section className="py-16 bg-gray-900 text-white text-center">
